@@ -51,6 +51,13 @@
     <p id= 'Clock'> 00:00:00 </p>
     <p id = 'Thermometer'> 34&deg;F </p>
 
+    <img id = 'upArrow' src = 'C:\Users\jacks\Desktop\School\System Design\Images for fridge\upArrow.png' 
+    style = 'cursor: pointer; position: absolute; height: 40px; width: 40px; top: 435px; right: 10px;'>
+    <img id = 'downArrow' src = 'C:\Users\jacks\Desktop\School\System Design\Images for fridge\downArrow.png' 
+    style = 'cursor: pointer; position: absolute; height: 40px; width: 40px; top: 485px; right: 10px;'>
+
+    <div style = 'position: absolute; top: 40px; right: 50px; font-size: 24px;' id = 'timer'>Timer: 1:00</div>
+
     <!--Browser-->
     <img id = 'browser' src = "https://yt3.googleusercontent.com/7Qy-xiYrM2DHUEVFTBkok5ei6n_qEnH9XRwBECZnsl_E02VxrLDYcU7svibdYL1YYs9sZKe6KA=s900-c-k-c0x00ffffff-no-rj"
     style="position: absolute; top: 20px; left: 20px;
@@ -78,7 +85,155 @@
         View Refrigerator Contents
     </button>
 
+    <!--<button onclick = 'toggleUnit()'>Toggle Unit</button>-->
+
+    <button style = 'position: absolute; top: 80px; right: 60px; width:80px; height:40px;' id = 'startButton' onclick="startTimer()">Start Timer</button>
+    <button style = 'position: absolute; top: 125px; right: 60px; width:80px; height:40px;' id = 'resetButton' onclick = "resetTimer()">Reset</button>
+    <div style="position: absolute; top: 80px; left: 240px;">
+        <input type="text" id="newItem" placeholder="Enter new item">
+        <button onclick="addItem()" id="addItem">Add</button>
+    </div>
+    
+    <table id="foodTable" style="position: absolute; top: 140px; left: 240px; border-collapse: collapse; font-size: 30px">
+        <tr>
+            <th>Shopping List</th>
+        </tr>
+    </table>
     <script>
+        const initialItems = ['Steak', 'Cheese', 'Milk', 'Eggs'];
+        let is24hrFormat = true;
+        let clockElement = document.getElementById('Clock');
+        clockElement.addEventListener('click', toggleClock);
+
+        let upButton = document.getElementById('upArrow');
+        let downButton = document.getElementById('downArrow');
+
+        upButton.addEventListener('click', incTemp);
+        downButton.addEventListener('click', decTemp);
+
+        let timerValue = 60;
+        let timerDisplay = document.getElementById('timer');
+
+        let isCelsius = false;
+        let temp = 34;
+        const tempElement = document.getElementById('Thermometer');
+        
+        let initialTimerValue = 60;
+
+        //tempElement.addEventListener('click', function(){
+        //    isCelsius = !isCelsius;
+        //    updateTemp();
+        //});
+        tempElement.addEventListener('click', toggleUnit);
+
+        window.onload = function() {
+            const table = document.getElementById('foodTable');
+            initialItems.forEach(function(item) {
+            const newRow = table.insertRow(table.rows.length);
+            const cell1 = newRow.insertCell(0);
+
+            cell1.innerHTML = item;
+            });
+        }
+
+        function addItem() {
+        var newItem = document.getElementById("newItem").value;
+        if (newItem) {
+            var table = document.getElementById("foodTable");
+            var newRow = table.insertRow(table.rows.length);
+            var cell1 = newRow.insertCell(0);
+            
+
+            cell1.innerHTML = newItem;
+            
+        }
+        // Clear the input field after adding the item
+        document.getElementById("newItem").value = "";
+    }
+
+        function updateTemp() {
+            //const tempElement = document.getElementById('thermometer');
+            if (isCelsius) {
+                const tempInCelsius = ((temp - 32) * 5 / 9).toFixed(2);
+                tempElement.textContent = `${tempInCelsius}°C`;
+            } else {
+                tempElement.textContent = `${temp}°F`;
+            }
+        }
+
+        function toggleUnit() {
+            isCelsius = !isCelsius;
+            updateTemp();
+        }
+
+        function incTemp() {
+            temp++;
+            updateTemp();
+        }
+        function decTemp() {
+            temp--;
+            updateTemp();
+        }
+
+        function toggleClock() {
+            is24hrFormat = !is24hrFormat;
+            updateClock();
+        }
+
+        function updateClock() {
+            var currentDate = new Date();
+            var hours = currentDate.getHours();
+            var mins = currentDate.getMinutes();
+            var secs = currentDate.getSeconds();
+
+            if (!is24hrFormat) {
+                hours = (hours % 12) || 12;
+            }
+
+            hours = hours < 10 ? '0' + hours : hours;
+            mins = mins < 10 ? '0' + mins : mins;
+            secs = secs < 10 ? '0' + secs : secs;
+
+            //var timeString = is24hrFormat ? hours + ':' + mins + ':' + secs : hours + ':' + mins + ':' + secs + (hours >= 12 ? ' PM' : ' AM');
+            var amPm = is24hrFormat ? ' ' : (hours >= 12 ? ' PM' : ' AM');
+            var timeString = hours + ':' + mins + ':' + secs + amPm;
+
+            //var outputElement = document.getElementById("Clock");
+            clockElement.textContent = timeString;
+        }
+
+        function resetTimer() {
+            timerValue = initialTimerValue;
+            updateTimerDisplay()
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(function() {
+                if (timerValue <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = 'Timer: 0:00';
+                    playTimerAlertSound();
+                    alert('Timer Expired!');
+                } else {
+                    const minutes = Math.floor(timerValue / 60);
+                    const seconds = timerValue % 60;
+                    timerDisplay.textContent = `Timer: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                    timerValue--;
+                }
+            }, 1000);
+        }
+
+        function playTimerAlertSound() {
+            var audio = new Audio('C:\Users\jacks\Desktop\School\System Design\alarmSound.mp3');
+            audio.play();
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerValue / 60);
+            const seconds = timerValue % 60;
+            timerDisplay.textContent = `Timer: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
         function doStartClock() {
             on.style.display = 'none';
             setInterval(doClockTick, 1000);
@@ -89,6 +244,14 @@
             var hours = currentDate.getHours();
             var mins = currentDate.getMinutes();
             var secs = currentDate.getSeconds();
+            if (!is24hrFormat) {
+                hours = (hours % 12) || 12;
+            }
+
+            hours = hours  < 10 ? '0' + hours : hours;
+            mins = mins < 10 ? '0' + mins : mins;
+            secs = secs < 10 ? '0' + secs : secs;
+
             var timeString = hours + ":" + mins + ":" + secs;
             var outputElement = document.getElementById("Clock");
             outputElement.textContent = timeString;
@@ -100,13 +263,19 @@
             var content = document.getElementById('content');
             var off = document.getElementById('off');
             var on = document.getElementById('on');
-            var DC = document.getElementById ('viewContent')
+            var DC = document.getElementById('viewContent');
+            var startButton = document.getElementById('startButton');
+            var resetButton = document.getElementById('resetButton');
             DC.style.display = 'none';
             browser.style.display = 'none';
             TV.style.display = 'none';
             content.style.display = 'none';
             off.style.display = 'none';
             on.style.display = 'block';
+            startButton.style.display = 'none';
+            resetButton.style.display = 'none';
+            newItem.style.display = 'none';
+            addItem.style.display = 'none';
         }
         function startUp() {
             document.body.style.backgroundColor = 'white';
@@ -115,13 +284,19 @@
             var content = document.getElementById('content');
             var off = document.getElementById('off');
             var on = document.getElementById('on');
-            var DC = document.getElementById ('viewContent')
+            var DC = document.getElementById ('viewContent');
+            var startButton = document.getElementById('startButton');
+            var resetButton = document.getElementById('resetButton');
             browser.style.display = 'block';
             TV.style.display = 'block';
             content.style.display = 'block';
             off.style.display = 'block';
             on.style.display = 'none';
             DC.style.display = 'block';
+            startButton.style.display = 'block';
+            resetButton.style.display = 'block';
+            newItem.style.display = 'block';
+            addItem.style.display = 'block';
         }
         function displayContent() {
             var foods = {
@@ -139,6 +314,9 @@
             }
             alert(content);
         }
+
+
+        updateTemp();
     </script>
 </body>
 

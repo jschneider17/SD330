@@ -1,1 +1,100 @@
-<h1> Hello World </h1>
+<!DOCTYPE html>
+<html lang = 'en'>
+    <header style = 'font-size: 32px; text-align: center;'>
+        Jack Schneider - System Design repository
+    </header>
+
+    <head>
+        <style>
+            .fileExplorer {
+                width: 350px;
+                top: 80px;
+                height: 400px;
+                background-color: tan; 
+                float: left;
+                position: absolute;
+                border-radius: 10px;
+                border-color: black;
+            }
+            .desktop {
+                margin-left: 25%;
+                padding: 20px;
+            }
+            .file-item {
+                background-color: white;
+                padding: 10px;
+                margin: 5px 0;
+                border-radius: 5px;
+            }
+            body {
+                background-image: url("backgroundImage.jpg");
+                background-size: cover;
+                background-attachment: fixed;
+            }
+            footer {
+            text-align: center;
+            background-color: white;
+            color: #333;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            }
+            .myPicture {
+            position: absolute;
+            top: 20px;
+            right: 220px;
+            width: 35px; 
+            height: auto; 
+            border-radius: 50%; 
+            }
+        </style>
+    </head>
+
+    <body id = 'body'>
+        <div class = 'fileExplorer'>
+            <header style = 'font-size: 24px;'>View Files</header>
+            <div id = 'files'></div>
+        </div>
+        <div id = 'desktop'></div>
+    
+        <div class = 'myPicture'>
+            <img src = "me.jpg" alt = 'Jack Schneider'>
+        </div>
+    <script>
+        function githubFilelist(){
+				
+            var htmlString = "";
+
+            // this creates JS object 'data' with a list of files  
+            // change "aptokash/SD330" to your github id and repository name 
+            (async () => {
+            const response = await fetch("https://api.github.com/repos/jschneider17/SD330/contents/");
+            const data = await response.json();
+    
+            // loop through the list of files, set "file" to each file name
+            for (let file of data) {
+            
+                fname = file.name;           
+                fpath = "https://github.com/jschneider17/SD330" + fname;  
+            
+                htmlString += '<div class = "file-item">';
+                htmlString += "<p>" + fname ;
+                htmlString += "<p><a href='" + fpath + "' target = '_blank'>";
+                htmlString += '</div>';
+            }
+    
+        document.getElementById('files').innerHTML = htmlString;
+        })()
+
+        }
+        window.onload = function() {
+            githubFilelist();
+        }
+    </script>
+        <footer>
+            Jack Schneider - 11/8/23
+        </footer>
+    </body>
+
+</html>

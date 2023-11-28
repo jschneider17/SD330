@@ -1,0 +1,197 @@
+{
+    "courses": [
+      {
+        "course_id": 1,
+        "course_name": "Introduction to Computer Science",
+        "instructor": "Dr. Smith",
+        "credits": 3,
+        "schedule": "Monday, Wednesday, Friday 10:00 AM",
+        "department": "Computer Science",
+        "books": [
+          {
+            "book_id": 101,
+            "title": "Computer Science: An Overview",
+            "author": "J. Glenn Brookshear",
+            "published_year": 2018,
+            "isbn": "178-1934015485"
+          },
+          {
+            "book_id": 102,
+            "title": "Code: The Hidden Language of Computer Hardware and Software",
+            "author": "Charles Petzold",
+            "published_year": 2000,
+            "isbn": "179-1542097124"
+          }
+        ]
+      },
+      {
+        "course_id": 2,
+        "course_name": "Introduction to Psychology",
+        "instructor": "Dr. Johnson",
+        "credits": 3,
+        "schedule": "Tuesday, Thursday 2:00 PM",
+        "department": "Psychology",
+        "books": [
+          {
+            "book_id": 201,
+            "title": "Psychology: Themes and Variations",
+            "author": "Wayne Weiten",
+            "published_year": 2020,
+            "isbn": "278-1605355271"
+          },
+          {
+            "book_id": 202,
+            "title": "The Psychopath Test: A Journey Through the Madness Industry",
+            "author": "Jon Ronson",
+            "published_year": 2012,
+            "isbn": "279-1451665979"
+          }
+        ]
+      },
+      {
+        "course_id": 3,
+        "course_name": "Medieval History",
+        "instructor": "Dr. Walker",
+        "credits": 3,
+        "schedule": "Tuesday, Thursday 3:30 PM",
+        "department": "History",
+        "books": [
+          {
+            "book_id": 301,
+            "title": "Europe in the Middle Ages",
+            "author": "Jessica Brown",
+            "published_year": 2016,
+            "isbn": "378-1457669330"
+          },
+          {
+            "book_id": 302,
+            "title": "Medieval Times",
+            "author": "Kevin Wilson",
+            "published_year": 2012,
+            "isbn": "379-1465481311"
+          }
+        ]
+      },
+      {
+        "course_id": 4,
+        "course_name": "Introduction to Cybersecurity",
+        "instructor": "Prof. Davis",
+        "credits": 3,
+        "schedule": "Monday, Wednesday 2:00 PM",
+        "department": "Computer Science",
+        "books": [
+          {
+            "book_id": 401,
+            "title": "Hacking and Defense",
+            "author": "Chris Taylor",
+            "published_year": 2019,
+            "isbn": "478-1524721819"
+          },
+          {
+            "book_id": 402,
+            "title": "Foundations of Information Security",
+            "author": "Sarah Johnson",
+            "published_year": 2021,
+            "isbn": "479-0310356927"
+          }
+        ]
+      },
+      {
+        "course_id": 5,
+        "course_name": "Software Development",
+        "instructor": "Dr. Allen",
+        "credits": 3,
+        "schedule": "Tuesday, Friday 5:00 PM",
+        "department": "Computer Science",
+        "books": [
+          {
+            "book_id": 501,
+            "title": "Programming Language Theory",
+            "author": "Sam White",
+            "published_year": 2020,
+            "isbn": "578-1621571542"
+          },
+          {
+            "book_id": 502,
+            "title": "Programming 101",
+            "author": "David Robinson",
+            "published_year": 2015,
+            "isbn": "579-0062368658"
+          }
+        ]
+      },
+      {
+        "course_id": 6,
+        "course_name": "Intro to Business",
+        "instructor": "Dr. Clark",
+        "credits": 3,
+        "schedule": "Tuesday, Thursday 11:00 AM",
+        "department": "Business",
+        "books": [
+          {
+            "book_id": 601,
+            "title": "Business in Modern Age",
+            "author": "Michael Anderson",
+            "published_year": 2021,
+            "isbn": "678-1400224675"
+          },
+          {
+            "book_id": 602,
+            "title": "Principles of Business",
+            "author": "Jon Ronson",
+            "published_year": 2016,
+            "isbn": "679-1400224682"
+          }
+        ]
+      },
+      {
+        "course_id": 7,
+        "course_name": "Journalism 101",
+        "instructor": "Dr. Johnson",
+        "credits": 3,
+        "schedule": "Tuesday, Thursday 2:00 PM",
+        "department": "Communications",
+        "books": [
+          {
+            "book_id": 701,
+            "title": "Modern Journalism Best Practices",
+            "author": "Nicholas Evans",
+            "published_year": 2019,
+            "isbn": "778-0761169253"
+          },
+          {
+            "book_id": 702,
+            "title": "Journalism Basics",
+            "author": "Benjamin Foster",
+            "published_year": 2020,
+            "isbn": "779-1635640240"
+          }
+        ]
+      },
+      {
+        "course_id": 8,
+        "course_name": "Philosophy 101",
+        "instructor": "Dr. Thompson",
+        "credits": 3,
+        "schedule": "Monday, Wednesday 9:30 AM",
+        "department": "Philosophy",
+        "books": [
+          {
+            "book_id": 801,
+            "title": "Classical Philosophy",
+            "author": "Olivia Turner",
+            "published_year": 2020,
+            "isbn": "878-0525557991"
+          },
+          {
+            "book_id": 802,
+            "title": "Theories of Philosophy",
+            "author": "Victoria Reed",
+            "published_year": 2015,
+            "isbn": "879-0465060696"
+          }
+        ]
+      }
+    ]
+  }
+  

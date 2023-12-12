@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="foxbooksStyles.css">
+    <title>Fox Books - Courses</title>
+</head>
+<body>
+    <div id="breadcrumbs"></div>
+    <header>
+        <h1>Fox Books</h1>
+        <nav>
+            <ul>
+            </ul>
+        </nav>
+    </header>
+    <div class="banner">
+        <a href="contact.html">Contact Us</a>
+        <a href="returns.html">Returns</a>
+        <a href="faq.html">FAQ</a>
+        <a href="all-books.html">View All Books</a>
+    </div>
+    
+
+    <main>
+        <h2>Select a course to view books</h2>
+        <div id="courseList"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Fox Books</p>
+    </footer>
+    <script src="FBscripts.js"></script>
+    <script>
+        // Call the updateBreadcrumbs function after the DOM has fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            updateBreadcrumbs([
+                { label: 'Home', url: 'foxbooks.html' },
+                { label: 'Courses', url: 'foxbooks.html' }
+            ]);
+        });
+    </script>
+</body>
+</html>
